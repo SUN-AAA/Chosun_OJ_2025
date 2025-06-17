@@ -1,0 +1,2013 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>기초프로그래밍</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1b6a7b21-8ece-8056-85a6-c98c00c0e3aa" class="page sans"><header><h1 class="page-title">기초프로그래밍</h1><p class="page-description"></p><table class="properties"><tbody></tbody></table></header><div class="page-body"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 7장</summary><div class="indented"><ul id="215a7b21-8ece-80f9-9325-cf0e709a741f" class="toggle"><li><details open=""><summary>7-1</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-801f-a56f-e6b689600cba" class="code"><code class="language-C">/* 
+    키보드에서 10개의 정수를 입력받아 배열에 저장하고, 저장된 수 만큼 * 를 출력하는 프로그램 
+*/
+
+&lt; 입력 예시 1&gt;
+input the 10 integer values : 7 2 5 9 3 4 12 6 8 3
+
+&lt;출력 예시 1&gt; 
+ 7 : *******
+ 2 : **
+ 5 : *****
+ 9 : *********
+ 3 : ***
+ 4 : ****
+12 : ************
+ 6 : ******
+ 8 : ********
+ 3 : ***
+
+
+
+&lt;입력 예시2&gt;
+input the 10 integer values : 9 3 5 12 8 6 5 10 7 3
+
+&lt;출력 예시2&gt;
+ 9 : *********
+ 3 : ***
+ 5 : *****
+12 : ************
+ 8 : ********
+ 6 : ******
+ 5 : *****
+10 : **********
+ 7 : *******
+ 3 : ***</code></pre></details></li></ul><ul id="215a7b21-8ece-8084-aa67-e2848afec998" class="toggle"><li><details open=""><summary>7-2</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-8016-b830-e786f9c7c250" class="code"><code class="language-C">/*
+3명의 학생들의 국어, 영어, 수학 점수를 입력받고 총점과 평균을 계산하여 배열에 저장할 수 있도록 
+3행 5열로 만들고, 각 학생들의 성적을 출력하는 프로그램
+단, 정수형 배열에 평균이 저장되므로 평균은 정수이다.
+*/
+
+&lt;입력 예1&gt;
+1th kor eng mat score : 70 60 70
+2th kor eng mat score : 80 80 70
+3th kor eng mat score : 60 50 50
+
+&lt;출력 예1&gt;
+kor     eng    mat    sum    avg
+70      60      70      200     66
+80      80      70      230     76
+60      50      50      160     53
+
+
+&lt;입력 예2&gt;
+1th kor eng mat score : 85 70 65
+2th kor eng mat score : 70 85 55
+3th kor eng mat score : 90 75 85
+
+&lt;출력 예2&gt;
+kor     eng    mat    sum    avg
+85      70      65      220     73
+70      85      55      210     70
+90      75      85      250     83</code></pre></details></li></ul><ul id="215a7b21-8ece-8063-958d-fcf279d0729b" class="toggle"><li><details open=""><summary>7-3</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80fb-a0c0-f9be03d084ff" class="code"><code class="language-C">/*
+정렬(sorting)은 데이터를 일정한 순서로 배열하는 것을 말한다.
+5개의 정수를 입력받아 버블 정렬로 출력하는 프로그램을 작성하시오.
+*/
+
+&lt;입력 예1&gt;
+input the 5 values : 7 4 3 9 2
+
+&lt;출력 예1&gt;
+After bubble sorting : 2 3 4 7 9
+
+
+&lt;입력 예2&gt;
+input the 5 values : 9 2 4 7 5
+
+&lt;출력 예2&gt;
+After bubble sorting : 2 4 5 7 9
+</code></pre></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 8장</summary><div class="indented"><ul id="215a7b21-8ece-80e5-b7c0-d93794207407" class="toggle"><li><details open=""><summary>8-1</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-802d-af84-d4f3e37cf025" class="code"><code class="language-C">아래 main 함수에 사용되는 함수 2개를 정의하라. draw_box는 예시처럼 상자를 그리고 area함수는 면적을 계산한다.
+int main(){
+	int h, w = 0;
+	char c1, c2;
+	scanf(&quot;%d %d %c %c&quot;, &amp;h, &amp;w, &amp;c1, &amp;c2);
+	draw_box(h, w, c1, c2 );
+	printf(&quot;area is %f\n&quot;, area(h,w));
+}
+
+입출력 예시1
+7 8 X ?
+XXXXXXXX
+X??????X
+X??????X
+X??????X
+X??????X
+X??????X
+XXXXXXXX
+area is 56.000000
+
+입출력 예시 2
+3 5 0 1
+00000
+01110
+00000
+area is 15.000000</code></pre></details></li></ul><ul id="215a7b21-8ece-807b-be0d-f5d1dd08d4e7" class="toggle"><li><details open=""><summary>8-2</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-8055-bedd-c5d685c763a9" class="code"><code class="language-C">아래 main 함수에 사용되는 함수를 입출력 예시를 보고 정의하라. 
+전역변수를 사용하여 ‘-’과 ‘*’이 함수에서 몇 번 출력되는지 세어라. 
+main 함수는 변경 불가이다.
+int main(){
+	int s;
+	count1 = 0;
+	count2 = 0;
+	while(1){
+		scanf(&quot;%d&quot;, &amp;s);
+		if( 0 &gt;= s || s&gt;9) break;
+		print_line(s); 
+	}
+	printf(&quot;the number of - prints is %d\n&quot;, count1);
+	printf(&quot;the number of * prints is %d\n&quot;, count2);
+}
+
+입출력 예시 1:
+7
+*-----*
+5
+*---*
+9
+*-------*
+4
+*--*
+33
+the number of - prints is 17
+the number of * prints is 8
+
+입출력 예시 2:
+5
+*---*
+4
+*--*
+6
+*----*
+0
+the number of - prints is 9
+the number of * prints is 6</code></pre></details></li></ul><ul id="215a7b21-8ece-80a3-89dd-e35639d00c56" class="toggle"><li><details open=""><summary>8-3</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80a0-b350-d71aba587d88" class="code"><code class="language-C">높이와 넓이를 입력 받아 ‘*’와 ‘r’로 상자를 그리는 recursive_box 순환호출 재귀함수를 작성하라.
+입출력을 확인하고, 반복문은 사용 금지, main함수는 변경 불가이다.
+힌트: static 변수에 넓이 값을 저장해서 사용할 수 있으며, 넓이는 0보다 커야 한다.
+int main(){
+	int height, width;
+	while(1){
+		scanf(&quot;%d %d&quot;, &amp;height, &amp;width);
+		if( 0 &gt;= width || 0 &gt;= height) break;
+		recursive_box(height, width);
+	}
+}
+
+입출력 예시 1:
+4 8
+*******r
+*******r
+*******r
+*******r
+3 5
+****r
+****r
+****r
+3 7
+******r
+******r
+******r
+3 6
+*****r
+*****r
+*****r
+0 0
+
+입출력 예시 2:
+2 6
+*****r
+*****r
+4 3
+**r
+**r
+**r
+**r
+0 0</code></pre></details></li></ul><ul id="215a7b21-8ece-8043-bbf2-d2d4400d9c73" class="toggle"><li><details open=""><summary>8-4</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-803f-b969-e88b7128ad3d" class="code"><code class="language-C">static 변수를 활용해서 숫자의 합을 출력하는 순환호출 print_sum 재귀함수를 정의하라. main 함수 및 입출력 예시를 참고.
+반복문은 사용할 수 없으며, main 함수는 변경 불가이다. 
+힌트: static 변수에 합을 저장할 수 있다. 합을 print_sum을 처음 호출할 때 0으로 초기화하고 
+print_sum이 마지막으로 순환호출 할 때 -1값으로 대입하면 반복문 사용 없이 구현 가능하다.
+void main(){
+	int n;
+	while(1){
+		scanf(&quot;%d&quot;, &amp;n);
+		if( 0 &gt;= n) break;
+		print_sum(n);
+	}
+}
+
+입출력 예시 1:
+5
+5+4+3+2+1+0=15
+6
+6+5+4+3+2+1+0=21
+3
+3+2+1+0=6
+0
+
+입출력 예시 2:
+4
+4+3+2+1+0=10
+12
+12+11+10+9+8+7+6+5+4+3+2+1+0=78
+0</code></pre></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 9장</summary><div class="indented"><ul id="215a7b21-8ece-8070-827e-e2e94071bb41" class="toggle"><li><details open=""><summary>9-1</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80c9-ab71-e3bb8af3487c" class="code"><code class="language-C">(BP2025) 9장(1) : swap() 함수 활용(p356)
+
+1부터 50사이의 정수를 순서대로 10개 입력 받는다(1부터 50사이의 수가 아니면 반복한다). 
+void swap(int *px, *py) 함수를 작성하고 이를 이용하여 입력받은 10개의 수를 증가하는 순으로 출력하는 프로그램을 작성하라. 
+
+## 입력 예시
+15 28 14 19  36 23 9 3 1 47
+
+## 출력 예시
+1 3 9 14 15 19 23 28 36 47
+
+## 입력 예시
+1 2 3 4 5 6 7 8 9 1
+
+## 출력 예시
+1 1 2 3 4 5 6 7 8 9</code></pre></details></li></ul><ul id="215a7b21-8ece-8072-af5e-d9a118d08012" class="toggle"><li><details open=""><summary>9-2</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80a5-b13c-d1e2dfab4ed3" class="code"><code class="language-C">(BP2025) 9장 (2): 배열과 포인터
+
+## 문제 설명
+사용자로부터 5개의 정수를 입력받아 배열에 저장한다. 포인터 변수 pt를 선언하고 pt에 배열의 주소값을 입력한다.
+이후 포인터를 이용하여 배열 각 원소의 값을 모두 더하여 출력하는 프로그램을 작성하라. 
+(반드시 포인터를 이용하여 배열의 값을 더하는 프로그램이 작성되어야 한다.) 
+
+## 입력 예시
+5 10 20 30 60
+
+## 출력 예시
+125
+
+## 입력 예시
+6 3 5 8 1
+
+## 출력 예시
+23</code></pre></details></li></ul><ul id="215a7b21-8ece-800a-82b7-c3ede020e57d" class="toggle"><li><details open=""><summary>9-3</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80a6-9ac0-eceaceef0805" class="code"><code class="language-C">(BP2025) 9장 (3) : 유용한 배열 함수작성 LAB. 변형(p365)
+
+## 문제 설명
+크기가 5인 int형 배열 v의 원소를 입력받고 원소의 평균과 표준편차를 출력하는 함수
+double get_array_avg(int *v, int n), double get_array_std(int *v, double avg, int n) 함수를 작성하라.
+get_array_std 함수의 매개변수는 배열, 평균, 배열의 크기이다.
+평균과 표준편차를 출력하여라. (출력은 소수점 2자리까지 반올림하여 출력)
+
+## 입력 예시 
+10 20 30 40 50
+
+## 출력 예시 
+30.00 14.14
+
+## 입력 예시 
+5 6 3 2 1
+
+## 출력 예시 
+3.40 1.85</code></pre></details></li></ul><ul id="215a7b21-8ece-8068-9c7f-dca424579f29" class="toggle"><li><details open=""><summary>9-4</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-806e-8aef-c0bf2161dfda" class="code"><code class="language-C">(BP2025) 9장 (4): 프로그래밍 연습문제 1번 변형(p370)
+
+## 문제 설명
+5개의 원소를 갖는 1차원 배열을 받아서 배열 요소들의 합을 계산하는 함수
+int get_arry_sum(int *A, int size)을 구현하고 합을 출력하는 프로그램을 작성하라.
+
+## 입력 예시 
+50 -69 85 20 -100
+
+## 출력 예시 
+-14
+
+## 입력 예시
+1 2 3 4 5
+
+## 출력 예시 
+15
+</code></pre></details></li></ul><ul id="215a7b21-8ece-80d2-b0c6-f1c60efc906d" class="toggle"><li><details open=""><summary>9-5</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-802f-93a8-c93d8fa31f1c" class="code"><code class="language-C">(BP2025) 9장 (5): 프로그래밍 연습문제 2번 변형(p370)
+
+## 문제 설명
+크기가 5인 정수 배열을 입력받고, 포인터를 이용하여 배열에 저장된 값을 역순으로 출력하는 프로그램을 작성하라.
+반드시 포인터를 이용하는 프로그램을 작성하라.
+
+## 입력 예시 
+1 2 3 4 5
+
+## 출력 예시 
+5 4 3 2 1
+
+## 입력 예시 
+25 36 86 95 45
+
+## 출력 예시 
+45 95 86 36 25
+</code></pre></details></li></ul><ul id="215a7b21-8ece-80e0-86e0-c19da578317a" class="toggle"><li><details open=""><summary>9-6</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-8020-8ed5-cb0f2cc2dc03" class="code"><code class="language-C">(BP2025) 9장 (6) : 배열과 포인터 변형
+
+## 문제 설명
+크기가 n(&lt;=10)인 정수형 배열 v의 원소들을 오름차순 혹은 내림차순으로 정렬하는 함수
+void sort_array(int *v, int n, int m)을 작성하라. 
+함수에서 v는 배열의 이름, n은 배열의 크기이며, m은 0또는 1의 값을 갖는다.
+0은 오름차순을 의미하며, 1은 내림 차순을 의미한다.
+입력의 첫 번째 줄은 n(배열의 크기)과 m(오름 차순 또는 내림 차순)이며 두 번째 줄은 배열의
+n개의 데이터가 입력된다.
+
+## 입력 예시 
+5 0
+12 25 45 65 23
+
+## 출력 예시 
+12 23 25 45 65
+
+## 입력 예시 
+5 1
+12 25 45 65 23
+
+## 출력 예시 
+65 45 25 23 12
+
+## 입력 예시 
+3 1
+-58 -65 -63
+
+## 출력 예시 
+-58 –63 -65</code></pre></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 10장</summary><div class="indented"><ul id="215a7b21-8ece-8049-9610-d6c4ff53dbf3" class="toggle"><li><details open=""><summary>10-1</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80bb-96ae-ede29c0acf49" class="code"><code class="language-C">이름을 입력 받고 이름을 공간 없는 대문자로 변경하는 함수를 정의하라.
+입출력 예시를 확인하고 main 함수는 수정 불가이다.
+int main(){
+	char str[128];
+	scanf(&quot;%[^\n]s&quot;, str);
+	standard_name(str);
+	printf(&quot;%s\n&quot;, str);
+}
+
+입출력 예시 1:
+Leo 14th
+LEO14TH
+
+입출력 예시 2:
+Harry S Truman
+HARRYSTRUMAN
+</code></pre></details></li></ul><ul id="215a7b21-8ece-801b-9b49-df1beb0a233b" class="toggle"><li><details open=""><summary>10-2</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80e5-8d40-de73899d30d7" class="code"><code class="language-C">새로운 비밀 번호를 입력 받아 번호에, 대문자, 소문자, 숫자 문자, 길이가 8 이상 있는지 확인하는 코드를 작성하라. 
+경고 메시지는 순서대로… “upper case char needed” “lower case char needed” “number char needed” “minimum 8 char” 이다.
+입출력 예시를 확인하고 main 함수는 수정 불가이다.
+int main(){
+	char str[128];
+	while(1){
+		printf(&quot;enter new password: &quot;);
+		scanf(&quot;%s&quot;, str);
+		if( check_password(str) ){
+			break;
+		}
+	}
+	printf(&quot;i hate these rules\n&quot;);
+}
+
+입출력 예시 1:
+enter new password: ??
+upper case char needed
+lower case char needed
+number char needed
+minimum 8 char
+enter new password: iLikeThis
+number char needed
+enter new password: iLikeThis99
+i hate these rules
+
+입출력 예시 2:
+enter new password: thisdoesnot
+upper case char needed
+number char needed
+enter new password: HELPSECURITY
+lower case char needed
+number char needed
+enter new password: aB12345678
+i hate these rules</code></pre></details></li></ul><ul id="215a7b21-8ece-806f-9cd1-def5583d4cbd" class="toggle"><li><details open=""><summary>10-3</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-8015-a398-e0b228bec020" class="code"><code class="language-C">사용자로 부터 문자열과 양수를 입력받은 후 문자열을 양수만큼 오른쪽으로 rotate 시켜주는 프로그램을 완성하시오.
+
+# 입출력 예시 1
+hello 1
+ohell
+
+# 입출력 예시 2
+test 2
+stte
+
+# 입출력 예시 3
+amazing 3
+ingamaz</code></pre></details></li></ul><ul id="215a7b21-8ece-80be-b4ce-ec07b777930c" class="toggle"><li><details open=""><summary>10-4</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80ea-875d-ff717a5118cc" class="code"><code class="language-C">사용자로 부터 문자열을 입력받은 후 해당 문자열의 길이가 세로의 길이인 직각 삼각형을 출력해주세요.
+
+# 입출력 예시 1
+hello
+h
+he
+hel
+hell
+hello
+
+# 입출력 예시 2
+test 
+t
+te
+tes
+test
+
+# 입출력 예시 3
+hi
+h
+hi</code></pre></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 11장</summary><div class="indented"><ul id="215a7b21-8ece-8043-840e-f348c17d23b5" class="toggle"><li><details open=""><summary>11-1</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80ef-af6c-c21810e1716d" class="code"><code class="language-C">(BP2025) 11장 (1) 구조체 응용
+
+## 문제 설명
+학생 명단과 점수를 입력하면 높은 점수를 얻은 m명의 학생 명단을 출력한다. 다음 조건을 만족하는 성적처리 프로그램을 작성해 보자.
+
+## 입력 예
+- 첫째 줄에 데이터의 개수 n (3 &lt;= n &lt;= 100)과 출력 인원 m (1 &lt;= m &lt;= n)이 공백으로 구분되어 입력된다.
+- 둘째 줄부터 학생 이름과 점수(0~100)가 공백으로 구분되어 입력된다. 
+- 영문 이름의 길이는 최대 9글자 이내로 한다.
+
+## 출력 예
+- 상위 점수 m명의 학생 명단을 출력한다.
+- 출력 순서는 점수가 높은 학생이 먼저 출력되며, 점수가 같을 경우는 입력 순서가 빠른 순서로 출력한다.
+
+## 입력 예시 1
+4 2
+joo 95
+kim 59
+lee 90
+son 100
+
+## 출력 예시 1
+son
+joo
+
+## 입력 예시 2
+5 3
+kim 75
+lee 60
+joo 80
+lim 78
+cho 55
+
+## 출력 예시 2
+joo
+lim
+kim</code></pre></details></li></ul><ul id="215a7b21-8ece-8018-9bbe-d973cdd8353a" class="toggle"><li><details open=""><summary>11-2</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80e0-92a7-f73dccea0222" class="code"><code class="language-C">(BP2025) 11장 (2) 공용체 응용 (p.441)
+
+## 문제 설명
+삼각형, 사각형, 원을 동시에 표현할 수 있는 공용체를 사용한다. 
+삼각형은 밑변과 높이, 사각형은 가로와 세로, 원은 반지름만 저장하도록 한다. 
+현재의 공용체가 표현하고 있는 도형의 종류는 열거형 변수를 이용하여 나타낸다. 
+원의 면적을 계산할 때는 3.14로 계산한다. 
+도형의 종류와 도형의 데이터를 입력받아, 도형의 면적을 계산하는 프로그램을 작성하라.
+
+- 조건1: 공용체를 사용해야 함.
+- 조건2: 열거형 변수를 사용해야 함.
+
+아래의 코드 힌트를 사용할 것.
+
+## 입력 예
+- 첫 번째 줄은 도형의 타입이 주어진다. 
+- 0은 삼각형, 1는 사각형, 2는 원을 의미한다.
+
+- 두번째 줄은 도형별 데이터가 주어진다. 
+삼각형의 경우: 밑변 높이 (삼각형의 넓이 = (밑변*높이)/2)
+사각형의 경우: 가로 세로 (사각형의 넓이 = 밑변 * 높이)
+원의 경우: 반지름 (원의넓이 = 반지름*반지름*3.14)
+
+## 출력 예
+도형의 면적
+
+## 입력 예시 1
+0
+10.0 5.0
+
+## 출력 예시 1
+25.000000
+
+## 입력 예시 2
+1
+4.0 4.0
+
+## 출력 예시 2
+16.0000000
+
+## 입력 예시 3
+2
+5.0
+
+## 출력 예시 3
+78.500000
+
+[코드 힌트]
+enum type {TRI, REC, CIR};
+
+struct Triangle {
+	double w;
+	double h;
+};
+struct Rectangle {
+	double x;
+	double y;
+};
+struct Circle {
+	double r;
+};
+union P {
+	struct Triangle T;
+	struct Rectangle R;
+	struct Circle C;
+};
+struct Polygon {
+	enum type kind;
+	union P poly;
+};
+int main()
+{
+    ???
+    ???
+
+    return 0;
+}</code></pre></details></li></ul><ul id="215a7b21-8ece-808d-9fec-eb31df760c29" class="toggle"><li><details open=""><summary>11-3</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80be-858e-c885f044fd51" class="code"><code class="language-C">(BP2025) 11장 (3) 복소수의 덧셈 (p.455, 3번 응용)
+
+## 문제 설명
+두 개의 복소수를 더하는 프로그램을 작성해 보자. 단, 복소수를 구조체로 정의하고 구현하라. a, b, c, d는 실수이다. 
+
+a+bi와 c+di의 덧셈은 다음과 같다.
+(a + bi) + (c + di) = (a + c) + (b + d)i
+
+## 입력 예
+입력은 아래와 같이 주어진다. 
+첫 번째 줄에는 첫 번째 복소수가 두 번째 줄에는 두 번째 복소수가 아래의 형식으로 주어진다. (복소수 입력에는 공백이 없음)
+
+a+bi
+c+di
+
+## 출력 예
+(a+c)+(b+d)i
+(복소수 출력에도 공백이 없음)
+
+## 입력 예시 1
+2.0+4.0i
+6.0+3.0i
+
+## 출력 예시 1
+8.00+7.00i
+
+## 입력 예시 2
+3.9-2.0i
+-0.9+1.5i
+
+## 출력 예시 2
+3.00-0.50i</code></pre></details></li></ul><ul id="215a7b21-8ece-8044-8cfe-c15afab7646f" class="toggle"><li><details open=""><summary>11-4</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-80c4-b275-c74ef39a707c" class="code"><code class="language-C">(BP2025) 11장 (4) 구조체를 이용한 시간 표현 (p.455, 4번 응용)
+
+## 문제 설명
+구조체를 이용하여 현재 시간을 표현하는 프로그램을 작성한다. 
+사용자로부터 2개의 시간을 입력받아서 두 시간 사이의 차이를 계산하여 출력한다. 
+단, 입력받는 2개의 시간은 어떤 것이 먼저이고, 어떤 것이 나중인지 모른다. 
+시(hour)로 주어지는 숫자는 0보다 크고 23보다 작다. 
+분(min)으로 주어지는 숫자는 0보다 크고 59보다 작다. 초(sec)로 주어지는 숫자는 0보다 크고 59보다 작다.
+
+## 입력 예
+시 분 초 
+시 분 초 
+
+## 출력 예
+시 분 초 
+
+## 입력 예시 1
+2 30 55
+3 40 59
+
+## 출력 예시 1
+1 10 4
+
+## 입력 예시 2
+16 30 50
+12 10 30
+
+## 출력 예시 2
+4 20 20</code></pre></details></li></ul><ul id="215a7b21-8ece-800e-a683-fd6670612aa6" class="toggle"><li><details open=""><summary>11-5</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-8015-bdb6-faa886ebca16" class="code"><code class="language-C">(BP2025) 11장 (5) 구조체 배열 (p.456, 5번 응용)
+
+## 문제 설명
+사원을 나타내는 구조체 employee가 이름(영문 문자열), 사번(정수), 전화번호(숫자 문자열), 나이(정수) 등으로 구성된다. 
+다음의 사원 10명의 정보를 구조체 배열로 저장하고, 주어진 검색 조건에 따라 검색의 결과를 출력하는 프로그램을 작성하자.
+
+Jeon  123 2345-7890 32
+Kim   125 3458-9990 22
+Lee   133 7345-9870 45
+Bae   140 5321-1234 54
+Kang  205 4916-5052 48
+Lee     245 2039-3458 25
+Kim   777 4708-2323 34
+Smith 900 6408-3298 39
+Park  428 3482-9283 21
+Kim   973 8934-2738 25
+
+## 입력 예
+입력은 아래의 포맷으로 구성된다. 
+{검색의 종류} {각 검색 종류에 따른 검색 조건}
+
+{검색 종류}는 아래의 숫자 중 하나이며, 각 번호는 이름, 사번, 전화번호, 나이의 범위를 의미한다.
+1 ➝ 이름, 2 ➝ 사번, 3 ➝ 전화번호, 4 ➝ 나이 범위
+
+{각 검색 종류에 따른 검색 조건}의 형식은 아래와 같다.
+1  Kim --&gt; Kim이란 이름을 가진 사람을 모두 찾아, 그 사람들의 정보를 출력
+2  133 --&gt; 사번 133을 가진 사람을 찾아, 그 사람의 정보를 출력
+3  5321-1234 전화번호 5341-1234를 가진 사람을 찾아 그 사람의 정보를 출력
+4  20 30 --&gt; 나이 20살 이상 30살 이하의 사람들을 찾아 그 사람들의 정보를 출력
+
+## 출력 예
+검색 조건에 맞는 사람 또는 사람들의 정보를 출력, 해당 조건에 맞는 사람이 없을 때는 -1을 출력한다. 
+
+## 입력 예시 1
+2 133
+
+## 출력 예시 1
+lee 133 7345-9870 45
+
+## 입력 예시 2
+4 20 30
+
+## 출력 예시 2
+Kim 125 3458-9990 22
+Lee 245 2039-3458 25
+Park 428 3482-9283 21
+Kim 973 8934-2738 25</code></pre></details></li></ul><ul id="215a7b21-8ece-8004-81e5-d10d94929409" class="toggle"><li><details open=""><summary>11-6</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-809c-99f1-e1f451f1ad60" class="code"><code class="language-C">(BP2025) 11장 (6) 구조체 내의 공용체 배열 응용 (p.456, 5번 응용)
+
+## 문제 설명
+사원을 나타내는 정보 employee가 이름(영문 문자열, 최대 9자), 사번(3자리 정수) 또는 전화번호(지정된 숫자 형식 문자열, xxxx-xxxx), 나이(정수) 등으로 구성된다. 
+즉 사번 또는 전화번호 중 하나만 주어진다.
+ 
+이를 구조체로 정의하고 그 안에서 공용체를 사용하여 사번 또는 전화번호 중에서 하나만을 사용할 수 있도록 구현하라.
+
+입력으로 주어지는 n명의 사원원 정보를 구조체 배열로 저장하고, 주어진 검색 조건에 따라 검색의 결과를 출력하는 프로그램을 작성하자.
+
+## 입력 예
+- 입력은 다음의 포맷으로 구성된다. 
+
+{n} {검색의 종류} {각 검색 종류에 따른 검색 조건}
+{name 1} {사번}/{전화번호} {나이}
+{name 2} {사번}/{전화번호} {나이}
+...
+{name n} {사번}/{전화번호} {나이}
+
+- 입력의 첫번째 줄은 {n} {검색의 종류} {각 검색 종류에 따른 검색 조건}으로 구성된다. 
+{n}은 입력되는 직원의 수이며, 0 &lt; n &lt;= 10 이다. 
+{검색 종류}는 아래의 숫자 중 하나이며, 각 번호는 이름, 나이의 범위를 의미한다.
+1 ➝ 이름, 2 ➝ 나이의 범위
+
+{각 검색 종류에 따른 검색 조건}의 형식은 아래와 같다.
+1 Kim ➝ Kim이란 이름을 가진 사람을 모두 찾아, 그 사람들의 정보를 출력
+2 20 30 ➝ 나이 20살 이상 30살 이하의 사람들을 찾아 그 사람들의 정보를 출력
+
+- 입력의 두번째 줄부터 n + 1번째 줄까지 {name 1} {사번}/{전화번호} {나이}의 형식으로 주어진다. 
+
+{name 1}은 영문 이름이다. 
+{사번}/{전화번호}는 사번(정수) 또는 전화번호{문자열}이다. 어떤 것인지 판단하여 공용체에 저장해야 한다.
+{나이}는 정수이다. 
+
+## 출력 예
+검색 조건에 맞는 사람 또는 사람들의 정보를 출력, 해당 조건에 맞는 사람이 없을 때는 -1을 출력한다. 
+
+
+## 입력 예시 1
+3 1 Kim
+Jeon 2345-7890 32
+Kim 125 22
+Lee 133 45
+
+## 출력 예시 1
+Kim 125 22
+
+## 입력 예시 2
+5 2 20 30
+joo 140 54
+lee 205 48
+kim 4708-2323 34
+cyc 900 39
+
+## 출력 예시 2
+kim 2039-2458 25
+
+[코드 힌트]
+- 공용체를 포함하는 구조체를 선언하는 법
+enum type {WN, PN}; // WN: 사번, PN: 전화번호
+
+union WPN {  // 사번과 전화번호에 대한 union
+    int wn;
+    char pn[10];
+};
+struct info {  // union의 타입과 값을 저장하기 위한 구조체
+    enum type kind;
+    union WPN n_info;
+};
+struct employee {  // union을 포함하는 employee에 대한 구조체
+    char name[10];
+    struct info num;
+    int age;
+};
+
+int main()
+{
+    ???
+    ???
+
+    return 0;
+}</code></pre></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 13장</summary><div class="indented"><ul id="215a7b21-8ece-8093-96a2-d821481aad06" class="toggle"><li><details open=""><summary>13-1</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-8099-959b-f9c1e9bb2385" class="code"><code class="language-C">int 배열 크기를 입력한 후, 입력 크기만큼 동적 메모리를 할당한다. 배열에 int 값들을 입력 받고, 
+찾는 int 값을 입력 받는다. 찾는 int 값이 배열에 몇개 있는지 출력하고, 동적 메모리를 반환한다. 
+입출력 예시를 확인해서 코드를 작성하라. 
+
+//입출력 예시 1, 입력은 3 23 56 77 77 순이다.
+Enter size: 3
+Enter 3 numbers: 23 56 77
+Find: 77
+1 number of 77
+
+//입출력 예시 2, 입력은 4 12 85 12 36 12 순이다.
+Enter size: 4
+Enter 4 numbers: 12 85 12 36
+Find: 12
+2 number of 12</code></pre></details></li></ul><ul id="215a7b21-8ece-80e2-9d9d-eacff1eb62ce" class="toggle"><li><details open=""><summary>13-2</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-804b-932d-cb4f02ec5e2b" class="code"><code class="language-C">아래 main 함수를 보면, 문자열을 입력 받아, 문자열을 int 배열에 카피하고 int 배열을 char로 출력하는 코드가 있다. 
+main 함수에서 사용되는 copy 함수를 정의하라. copy 함수는 문자열을 입력 받아 char들을 int 배열에 저장한다. 
+main 함수는 수정 불가하다.
+
+int main(){
+	char str[256];
+	scanf(&quot;%[^\n]&quot;, str);
+	//printf(&quot;%s\n&quot;, str);
+	
+	int* c = copy(str);
+	
+	int i = 0;
+	while( c[i] != 0){
+		printf(&quot;%c&quot;, c[i]);
+		i++;
+	}
+	printf(&quot;\n&quot;);
+	free(c);
+	return 0;
+}
+
+//입출력 예시 1
+char can be saved as int
+char can be saved as int
+
+//입출력 예시 2
+int can be printf as char
+int can be printf as char</code></pre></details></li></ul><ul id="215a7b21-8ece-80fb-802f-d6f2553c6629" class="toggle"><li><details open=""><summary>13-3</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-8023-85dd-f67a57465819" class="code"><code class="language-C">아래 main 함수를 보면, 문자열을 입력 받는다. 
+입력 받은 문자열은 스페이스 문자와 ‘0’~‘9’ 숫자 문자만 입력 받는다고 가정한다. (다른 문자 입력을 예외 처리할 필요 없다.) 
+입력 받은 문자열에 있는 정수를 int로 변환해서 int 배열에 저장하는 to_int_array 함수를 구현하라. 
+size는 int 배열의 크기이며, main 함수는 수정 불가이다. main 함수와 입출력을 참고하라.
+
+int main(){
+	char str[256];
+	scanf(&quot;%[^\n]&quot;, str);
+	//printf(&quot;%s\n&quot;, str);
+	
+	int* array;
+	int size;
+	array = to_int_array( &amp;size, str);
+	printf(&quot;size: %d\n&quot;, size);
+	for( int i = 0 ; i &lt; size; i++){
+		printf(&quot;%d &quot;, array[i]);
+	}
+	printf(&quot;\n&quot;);
+	free(array);
+	return 0;
+}
+
+//입출력 예시 1, 입력은 0 0 523 6621 415 이다.
+0 0 523 6621 415
+size: 5
+0 0 523 6621 415
+
+//입출력 예시 2, 입력은 5412 354 14 5 1 65 777 이다.
+5412 354 14 5 1 65 777
+size: 7
+5412 354 14 5 1 65 777
+</code></pre></details></li></ul><ul id="215a7b21-8ece-8089-b0eb-e4a93ff793cb" class="toggle"><li><details open=""><summary>13-4</summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="215a7b21-8ece-805d-b5d8-e5d419f8baa0" class="code"><code class="language-C">아래 main 함수에서는 unsigned int 3개를 입력 받는다. 
+to_str은 3개의 unsigned int 배열을 문자열로 변환해준다. 
+str_size는 스페이스와 숫자 char의 수이다. 
+main 함수는 수정 불가이며, main함수와 입출력을 참고하여 to_str함수를 구현하라.
+
+int main(){
+	unsigned int arr[3];
+	scanf(&quot;%u %u %u&quot;, arr, arr+1, arr+2);
+	
+	int str_size;
+	char *str = to_str( &amp;str_size, arr);
+	printf(&quot;str_size: %d\n&quot;, str_size);
+	printf(&quot;%s\n&quot;, str);
+	free(str);
+	return 0;
+}
+
+//입출력 예시 1, 입력은 1 2 3이다.
+1 2 3
+str_size: 5
+1 2 3
+
+//입출력 예시 2, 입력은 214567 1245 0이다.
+214567 1245 0
+str_size: 13
+214567 1245 0</code></pre></details></li></ul></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">기말 족보</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="211a7b21-8ece-8059-8218-d80b7f8f423d" class="code"><code class="language-C">24-1 기초프로그래밍 기말 라코 
+
+// 1번문제 
+// 10개의 정수를 한번에 입력받아, 오름차순으로 정리하여 10의 자릿수 만큼 별 출력 
+
+// 입력 예시 
+// 30 20 50 60 29 8 10 70 80 44
+// 출력예시 
+//      (입력의 8에 해당)  
+//*
+//**
+//*** 
+//****
+//*****
+//******
+//*******
+//********
+
+
+//2번문제 
+// 사용자가 -1을 입력하기 전까지 저축액을 계속 입력받음. -1이 나오면 총 저축액을 출력함
+// 단, 총 저축액 계산부분은 함수를 이용 할 것. 
+
+// 입력예시 
+// 얼마를 저축하시겠습니까 ? (종료는 -1) :  300 400 500 -1
+// 출력예시 
+// 지금까지의 저축액은 1200 입니다
+
+
+//3번문제 
+// char dic[5][2][100] ={
+//     {&quot;book&quot;,&quot;책&quot;},
+//     {&quot;boy&quot;,&quot;소년&quot;},
+//     {&quot;computer&quot;,&quot;컴퓨터&quot;},
+//     {&quot;language&quot;,&quot;언어&quot;},
+//     {&quot;rain&quot;,&quot;비&quot;}
+// };
+
+// ^주어진 배열을 이용할 것 / string.h 사용할 것
+// 영어단어를 한번만 입력받아, ^해당배열 중 일치 할시 , 해당 단어와 한글(뜻)을 출력함. 
+
+//입력예시 1 
+// 단어입력 : boy
+// 출력 예시 1
+// boy : 소년
+
+// 입력예시 2
+// 단어입력 :  soap
+//출력예시 2
+// 사전에서 발견되지 않았습니다.
+
+//4번문제 
+// struct O {
+//char name[100];
+//double price;
+//int n;
+//double total;
+// };
+
+// ^주어진 구조체를 이용할 것
+// 상품의 이름, 가격, 개수를 한번 입력받아 저장한 뒤, 해당 상품의 이름/가격/개수/ 총 재고액(가격 * 개수) 을 출력할 것
+
+//입력예시 
+// 상품의 이름 : pen
+// 상품의 가격 : 100
+// 상품의 개수 : 20 
+
+// 출력예시 
+// 상품의 이름 : pen
+// 상품의 가격 : 100
+// 상품의 개수 : 20 
+// 상품의 재고액 : 2000</code></pre></div></details><p id="211a7b21-8ece-80a3-a715-fb309006fbaa" class="">
+</p><hr id="211a7b21-8ece-8071-af93-f87da96e5068"/><p id="211a7b21-8ece-804c-8c03-ee0efbe0d328" class="">
+</p><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 2장</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">2-1</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-802f-8f91-e4e3d5364cf8" class="code"><code class="language-C">int 변수에 값을 scanf로 입력 받아 float 변수에 대입해서 출력하고 int 변수 값도 출력하라. 
+아래 출력 예시와 같이 출력이 나오게 하라.
+
+입출력 예시 1: 아래에서255이 입력이고 나머지는 출력이다.
+get 255
+data type 255.000000 255
+
+입출력 예시2: 아래에서 314가 입력이고 나머지는 출력이다.
+get 314
+data type 314.000000 314</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">2-2</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-802b-b02e-ddb6255a07d7" class="code"><code class="language-C">int, float, char 값을 순서대로 입력 받아, 3개의 변수를 + 연산자로 합하여 double 변수에 대입해서 출력하라.
+(출력되는 값이 어떻게 계산되는지 생각해 보자)
+
+입출력 예시 1: 아래에서0 0 8이 int float char 입력이며 나머지는 출력이다.
+get 0 0 8
+sum data type 56.000000
+
+입출력 예시 2: 아래에서12 3.14 A가 int float char 입력이며 나머지는 출력이다.
+get 12 3.14 A
+sum data type 80.139999</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">2-3</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80ee-831c-ecc7477d7be1" class="code"><code class="language-C">float 값 2개를 입력 받아 int 변수에 대입해서 int 변수들의 합과 차이를 구하라.
+입출력 예시를 보고 출력코드를 작성하라.
+(float 값이 int 변수에 대입되면 어떤 정보가 생략되는지 생각해보자)
+
+입출력 예시 1: 아래에서12.3 7.8이 2개의float 입력이며 나머지는 출력이다.
+get 12.3 7.8
+12.300000 + 7.800000 becomes 12 + 7 = 19
+12.300000 + 7.800000 becomes 12 - 7 = 5
+
+입출력 예시 2: 아래에서3.99 4.99가 2개의float 입력이며 나머지는 출력이다.
+get 3.99 4.99
+3.990000 + 4.990000 becomes 3 + 4 = 7
+3.990000 - 4.990000 becomes 3 - 4 = -1</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 3장</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">3-1</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-804b-9fc3-e4bbca3508db" class="code"><code class="language-C">## 문제 설명
+sizeof 연산자를 이용해서 char형, short형, int형, long형, long long형, float형, double형,
+long double형, char형 변수 cho, int형 변수 sun, double형 변수 chosun에 대한
+자료형의 크기를 출력하는 프로그램을 작성하시오.
+
+[참고]
+- sizeof 연산자를 이용해서 char형, short형, int형, long형, long형, float형, double형, long double형 등 변수나 자료형 크기를 바이트 단위로 반환
+- long형의 크기는 Windows에서는 4바이트, 리눅스에서는 8바이트
+
+## 출력 예시
+char형의 바이트 크기: 1
+short형의 바이트 크기: 2
+int형의 바이트 크기: 4
+long형의 바이트 크기: 8
+long long형의 바이트 크기: 8
+float형의 바이트 크기: 4
+double형의 바이트 크기: 8
+long double형의 바이트 크기: 16
+cho 변수의 바이트 크기: 1
+sun 변수의 바이트 크기: 4
+chosun 변수의 바이트 크기: 8</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">3-2</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8032-9fe1-c615f37723fc" class="code"><code class="language-C">## 문제 설명
+원/달러 환율과 달러를 입력받아 몇 원인지 출력하는 프로그램을 작성하시오.
+
+## 입력 예시
+1210
+150
+
+## 출력 예시
+KRW = 181500</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">3-3</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8077-8af2-eaa248585f85" class="code"><code class="language-C">## 문제 설명
+매달 입금하는 금액과 저축하는 개월수를 정수로 입력하여, 저축 기간을 년월로 표시하고
+저축 총액을 출력하는 프로그램을 작성하시오.
+단, 이자는 무시하며, 월 입금액은 최대 1000만원, 개월수는 최대 300월로 합니다.
+(힌트: 변수의 크기에 따른 오버플로우 문제 해결 필요함)
+
+## 입력 예시 1
+50000 240
+
+## 출력 예시 1
+20년 0월 저축 총액 = 12000000
+
+## 입력 예시 2
+380000 39
+
+## 출력 예시 2
+3년 3월 저축 총액 = 14820000</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">3-4</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8056-b8c8-f912c397be2f" class="code"><code class="language-C">## 문제 설명
+가로 길이와 세로 길이를 입력받아 직사각형의 넓이와 둘레를 구하는 프로그램을 작성하시오.
+
+## 입력 예시 1
+10
+20
+
+## 출력 예시 1
+직사각형의 넓이: 200
+직사각형의 둘레: 60
+
+## 입력 예시 2
+25
+50
+
+## 출력 예시 2
+직사각형의 넓이: 1250
+직사각형의 둘레: 150</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">3-5</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8067-8d88-da8cee1c2dff" class="code"><code class="language-C">## 문제 설명
+다음 조건을 만족하는 프로그램을 작성하시오.
+ - 문자형 연산 &#x27;A&#x27; + 2 결과를 문자로 출력
+ - 문자형 연산 &#x27;A&#x27; + 5 결과를 문자로 출력
+ - 문자형 연산 &#x27;S&#x27; - 1 결과를 문자로 출력
+ - 문자형 연산 &#x27;S&#x27; - 3  결과를 문자로 출력
+
+
+## 출력 예시
+C
+F
+R
+P</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 4장</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">4-1</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8069-9b7e-f46f1f837b8d" class="code"><code class="language-C">// 양수를 입력받아, 비트 NOT 연산자 ~ 를 이용하여 음수를 출력하는 프로그램을 작성하시오.
+// 비트 NOT 연산자는 변수 안의 각 비트들을 반전 시킨다 (1의 보수)
+// 컴퓨터는 2의 보수로 음수를 만든다.
+
+[입력]
+positive number : 5
+
+[출력]
+negative number : -5
+-------------------------------
+[입력]
+positive number : 35
+
+[출력]
+negative number : -35</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">4-2</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8054-8329-e4fa011303ce" class="code"><code class="language-C">/* 거스름돈 계산하기
+물건 가격과 지불 금액을 입력받고, 거스름돈에 대해서 5000원, 1000원, 500원, 100원, 50원, 10원, 1원을
+각각 얼마씩 지불해야 하는지 계산하는 프로그램을 작성하시오 
+
+        int price;   // 물건값
+	int pay;     // 손님이 낸 금액
+	int change; //거스름돈
+*/
+
+[입력]
+price : 11570
+pay : 20000
+
+[출력]
+change : 8430
+
+5000won : 1
+1000won : 3
+500won : 0
+100won : 4
+50won : 0
+10won : 3
+1won : 0
+-----------------------------
+
+[입력]
+price : 11111
+pay : 15000
+
+[출력]
+change : 3889
+
+5000won : 0
+1000won : 3
+500won : 1
+100won : 3
+50won : 1
+10won : 3
+1won : 9</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">4-3</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80ff-b23b-e8a8c2bc03bc" class="code"><code class="language-C">/* 사용자에게 2개의 실수(two real values)를 입력 받아서 정수부를 더한 값(sum of integer parts)을 출력하는 프로그램을 작성하시오.
+
+  예)  실수값이 12.78965 일때, 정수부는 12이고 실수부는 0.78965이다.
+
+*/
+
+
+[입력]
+two real values : 5.12345 
+8.45678
+
+[출력]
+sum of integer parts : 13
+----------------------------------------
+
+[입력]
+two real values : 53.78965 
+95.12345
+
+[출력]
+sum of integer parts : 148</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">4-4</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80e8-ab87-e114a053b588" class="code"><code class="language-C">/* 구(sphere)의 반지름(radius)을 입력 받아 구의 표면적(surface of area)과 부피(volume)을 구하는 프로그램을 작성하시오. 
+단, 출력은 소수점 3자리이다.
+ 
+# define  PI  3.141592
+
+표면적: S = 4 * PI * radius * radius
+부피:  V = (4.0/3.0) * PI * radius * radius * radius
+*/
+
+
+[입력] 
+radius of the sphere : 5
+
+[출력]
+surface area : 314.159
+volume : 523.599
+
+------------------------------------
+
+[입력]
+radius of the sphere : 13
+
+[출력]
+surface area : 2123.716
+volume : 9202.770</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">4-5</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80d7-b28a-c62aabe5f4d0" class="code"><code class="language-C">/*
+숫자(양수)를 입력 받아 왼쪽으로 3비트(3-bit left shift) 이동한 후, 오른쪽으로 2비트(2-bit right shift) 이동한 결과를 출력하는 프로그램을 작성하시오.
+*/
+
+[입력]
+number : 19
+
+ [출력]
+3-bit left shift and 2-bit right shift : 38
+
+--------------------------------------------------
+
+[입력]
+number : 43
+
+[출력]
+3-bit left shift and 2-bit right shift : 86
+
+---------------------------------------------------
+
+[입력]
+number : 24
+
+[출력]
+3-bit left shift and 2-bit right shift : 48</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 5장</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">5-1</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8051-b031-eae1cfc3be43" class="code"><code class="language-C">‘i’, ‘f’, ‘d’, ‘c’ 중 하나를 입력 받아서,
+‘i’를 입력 받은면 int 값을 입력 받아 출력, 
+‘f’는 float 값을 입력 받아 %f로 출력, 
+‘d’는 double을 입력 받아 %.20lf로 출력,
+‘c’는 char을 입력 받아서 %c로 출력하라. 
+‘i’, ‘f’, ‘d’, ‘c’ 하고 다른 값이 입력되면 “please follow instructions”를 출력하라. 
+(hint: char을 2번째 입력 받을 때 enter값이 char변수에 들어가지 않게 조심하자. char 입력 문제 3장 내용 참조.) 
+입출력 예시를 참조하라.
+
+입출력 예시 1:  p가 입력 
+enter data type i, f, d, c: p
+please follow instructions
+
+입출력 예시 2: c, X가 입력
+enter data type i, f, d, c: c
+enter value: X
+value is X
+
+입출력 예시 3: d, 12.33이 입력 
+enter data type i, f, d, c: d
+enter value: 12.33
+value is 12.33000000000000007105</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dda7b21-8ece-8064-bf09-c5375f914708" class="code"><code class="language-C">//오답정리
+
+/* if(s == &#x27;c&#x27;) 부분을 실행했을 때 입출력이 안되었다.
+그 이유는 처음 s값을 입력받을 때의 엔터값이 char c에 들어가벼렸기 때문이다.
+문자를 두번 입력받아야 하는 경우에는 다음 입력을 위해 꼭 엔터값을 받는 문장을 넣도록 하자.
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
+#include &lt;stdio.h&gt;
+int main()
+{
+	char s;
+	char empty;
+	printf(&quot;enter data type i, f, d, c: &quot;);
+	scanf(&quot;%c&quot;, &amp;s);
+	scanf(&quot;%c&quot;, &amp;empty);
+
+	if (s == &#x27;c&#x27;) {
+		char c;
+		printf(&quot;enter value: &quot;);
+		scanf(&quot;%c&quot;, &amp;c);
+		printf(&quot;value is %c\n&quot;, c);
+	}
+	else if (s == &#x27;f&#x27;) {
+		float n;
+		printf(&quot;enter value: &quot;);
+		scanf(&quot;%f&quot;, &amp;n);
+		printf(&quot;value is %f\n&quot;, n);
+	}
+	else if (s == &#x27;d&#x27;) {
+		double n;
+		printf(&quot;enter value: &quot;);
+		scanf(&quot;%lf&quot;, &amp;n);
+		printf(&quot;value is %lf\n&quot;, n);
+	}
+	else if (s == &#x27;i&#x27;) {
+		int n;
+		printf(&quot;enter value: &quot;);
+		scanf(&quot;%d&quot;, &amp;n);
+		printf(&quot;value is %d\n&quot;, n);
+	}
+	else {
+		printf(&quot;please follow instructions\n&quot;);
+	}
+
+	return 0;
+}</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">5-2</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-807b-940c-ed940cd5c3b4" class="code"><code class="language-C">int값 4개를 입력 받아서, 4개 값 중에 같은 값이 있으면, 입력 받은 순서대로 출력하라. 
+똑 같은 값을 2번 출력해서는 안된다. 
+같은 값이 없으면 “all unique”을 출력한다
+
+입출력 예시 1
+enter 4 values: 1 2 3 4
+all unique
+
+입출력 예시 2
+enter 4 values: 1 2 3 3
+repeated value 3
+
+입출력 예시 3
+enter 4 values: 3 3 3 3
+repeated value 3
+
+입출력 예시 4
+enter 4 values: 5 5 4 4
+repeated value 5 4
+
+입출력 예시 5
+enter 4 values: 4 5 5 4
+repeated value  4 5
+
+입출력 예시 6
+enter 4 values: 5 3 3 3
+repeated value 3</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">5-3</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80d7-806d-e17fdff7fb99" class="code"><code class="language-C">double 값 5개를 입력 받아서, 제일 큰 수 2개를, 입력 받은 순서대로 출력하라. 
+입력 받은 값들이 전부 다른 값이라고 가정하자.
+	
+입출력 예시 1
+enter 5 values: 1 2 3 4 5
+two big numbers 4.000000 5.000000
+
+입출력 예시 2
+enter 5 values: 5 4 3 2 1
+two big numbers 5.000000 4.000000
+
+입출력 예시 3
+enter 5 values: 3 4 2 5 1
+two big numbers 4.000000 5.000000
+
+입출력 예시 4
+enter 5 values: 3 5 2 4 1
+two big numbers 5.000000 4.000000
+
+입출력 예시 1
+enter 5 values: 4 1 2 3 5
+two big numbers 4.000000 5.000000</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">OJ 6장</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">6-1</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80c4-a76a-c88f790fac07" class="code"><code class="language-C"># 문제 설명
+사용자로부터 정수 x, y(x &lt; y)를 입력받아 x부터 y까지의 합을 구하는 프로그램을
+작성하라. for 문은 조건식이 거짓이 될 때까지 계속 실행된다.
+
+# 입력 예시 1
+1 10
+
+# 출력 예시 1
+55
+
+# 입력 예시 2
+-10 1
+
+# 출력 예시 2
+-54</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">6-2</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8074-a19e-d8bd5e43876e" class="code"><code class="language-C">사용자로부터 입력받은 임의의 정수가  0 아니면 입력한 값을 누적해서 더하고 
+만약에 사용자가 0을 입력하면 지금까지 계산 값을 출력한다. do ~ while 문을 사용한다.
+
+# 입력 예시 1
+5
+-7
+20
+6
+0
+
+# 출력 예시 1
+24
+
+# 입력 예시 2
+1
+1
+2
+2
+-5
+-5
+-10
+0
+
+# 출력 예시 2
+-14
+</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">6-3</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80a1-af4b-d05394fec44b" class="code"><code class="language-C">홀수를 입력 받아, 홀수 크기의 피라미드를 그려보자. 
+피라미드는 &quot; ^ &quot; 와 &quot; * &quot; 문자를 사용한다.
+
+## 입력예시1 
+5
+
+## 출력 예시 1
+^^*^^
+^***^
+*****
+
+##입력 예시2
+9
+
+##출력 예시 2
+^^^^*^^^^
+^^^***^^^
+^^*****^^
+^*******^</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">6-4</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80ad-88cb-e82e87429bd0" class="code"><code class="language-C"># 문제 설명
+
+ 2부터 9 사이의 정수 a와 b를 입력받아  1부터 100까지의 자연수 중에서 a의 배수이면서 동시에 b의 배수를 출력한다.
+범위를 벗어난  정수가 입력되면 “Try again”이 출력되고, 다시 옳은 정수를 입력하도록 한다.
+(참고) 반복문과 break 문을 사용하여 입력받는 두 값이 2부터 9 사이의 값이 될 때까지 반복한다.
+
+# 입력 예시 1
+5 9
+
+# 출력 예시 1
+45 90
+
+# 입력 예시 2 (11 3 입력하면 “2부터 9 사이의 숫자” 이어야 하므로, “Try again”이 출력, 다시 5 6을 입력하면 30 60 90 출력 됨)
+11 3
+5 6
+
+# 출력 예시 2
+Try again     
+30 60 90</code></pre></div></details><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">6-5</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80ce-8b88-feaa5f7f3cf0" class="code"><code class="language-C">100부터 1000 사이의 수 x를 입력하면 1부터 x까지의 모든 정수에 포함한 3의 개수를 카운트하여 출력하는 프로그램을 작성해보자. 
+예를 들어 x가 100이고 1부터 100 사이의 3의 개수를 구할 때, 33은 2개로 계산되어야 한다. 만일 x가 100~1000 사이 범위 외는 출력값이 없다.
+
+# 입력 예시 1
+120
+
+# 출력 예시 1
+22
+
+## 입력 예시 2
+70
+
+# 출력 예시 2
+(출력 없음)</code></pre></div></details></div></details><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">중간 족보</summary><div class="indented"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80e1-ad93-f6ce321ef76c" class="code"><code class="language-C">// 01번 문제  kor,eng,math 점수입력 후 총 합 구하기
+// 입력형태 &gt; kor,eng,math 점수 : 
+// 출력형태 &gt; 총합 =</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8033-8ef2-c78ee566ced5" class="code"><code class="language-C">//02번 문제 서로 다른 정수 3개 입력 후 크기비교해서 큰것부터 나열
+// 입력 형태 &gt; 첫째 줄에 A와 B,C가 주어진다. A,B,C는 공백 한칸으로 구분되어져 있다. 
+// 출력 형태 &gt; 오름차순으로 한줄로 정렬하여 출력해라 (&lt;,&gt;을 사용 할 것)</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-8047-b9ee-fb428d5b1f7e" class="code"><code class="language-C">//03번 문제 삼각형 세변 입력 받은후
+// 삼각형인지, 정삼각형인지,이등변삼각형인지,직각삼각형인지,그냥 삼각형 인지 판별
+// 입력 형태 &gt; 첫 째 줄에 a,b,c가 주어진다. a,b,c는 공백 한칸으로 구분되어진다 
+// 출력 형태 &gt; &quot;~ 삼각형 입니다.&quot; ( ~에는 삼각형 종류 출력 )
+// hint &gt; 삼각형의 조건 생각하기</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-80ca-a2c0-c84cde339ae4" class="code"><code class="language-C">// 04번 문제
+// 1. 인치 Inches -&gt; 센티미터 Centimeter 
+// 2. 화씨 fahrenheit-&gt; 섭씨 celcius 
+// ^ 출력 후 1,2 중 한 값을 입력해서 선택함
+
+// centimeter = inch * 2.54;
+// celsius = (fahrenheit - 32) * 5.0 / 9.0;
+
+// 그 후 수를 입력해서 선택한 식에 맞게 계산, 변환 후 출력
+// 이때, 1,2 를 제외한 수를 입력받으면 다시 입력받으라는 멘트 출력
+// 입력 형태 &gt; 1. 2.중 선택하여 인치 또는 화씨를 입력한다 
+// 출력 형태 &gt; 변환된 값을 출력한다 
+
+/*</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1dca7b21-8ece-807c-a7fb-f81a6475674c" class="code"><code class="language-C">//05번 문제 피라미드 문제 a,b입력받음(이때 a,b는 양수인 정수이고,합이 10이하여야함)
+// a=줄수, 칸수
+// b=처음 시작되는 숫자
+/* 
+ex&gt; 6 4 입력시
+     4
+    45
+   456
+  4567
+ 45678
+456789
+ */</code></pre></div></details><p id="1dca7b21-8ece-8036-ab1c-edf5cd0fc32e" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
